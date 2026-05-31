@@ -189,7 +189,6 @@
       width: 150px;
       height: 150px;
       object-fit: contain;
-      /* filter: drop-shadow(0 4px 8px rgba(0,102,204,0.2)); */
       transition: all 0.3s ease;
     }
     
@@ -198,7 +197,7 @@
       transform: scale(1.02);
     }
     
-    /* Contenedor del texto del logo (si quieres mantener el texto junto a la imagen) */
+    /* Contenedor del texto del logo */
     .logo-text-wrapper {
       display: flex;
       flex-direction: column;
@@ -307,7 +306,7 @@
       }
     }
     
-    /* Para pantallas muy grandes, el logo puede ser aún más grande */
+    /* Para pantallas muy grandes */
     @media (min-width: 1600px) {
       .logo-image {
         width: 120px;
@@ -617,7 +616,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer con traducción COMPLETA - CORREGIDO -->
     <footer class="border-t border-[#B8E1FF] py-12 px-6 md:px-24 bg-gradient-to-b from-white to-[#F0F9FF]">
       <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         <div>
@@ -628,16 +627,37 @@
               <div class="text-sm text-[#0066CC] font-semibold"><i class="fas fa-phone-alt mr-1"></i> 617-270-0465</div>
             </div>
           </div>
-          <p class="text-sm text-[#6B7280] leading-relaxed" data-lang-es="Líderes en limpieza profesional para estadios, nieve e infraestructura crítica. Operando con excelencia." data-lang-en="Leaders in professional cleaning for stadiums, snow, and critical infrastructure. Operating with excellence.">Líderes en limpieza profesional para estadios, nieve e infraestructura crítica. Operando con excelencia.</p>
+          <!-- Texto con traducción -->
+          <p class="text-sm text-[#6B7280] leading-relaxed" data-lang="es">Líderes en limpieza profesional para estadios, nieve e infraestructura crítica. Operando con excelencia.</p>
+          <p class="text-sm text-[#6B7280] leading-relaxed hidden" data-lang="en">Leaders in professional cleaning for stadiums, snow, and critical infrastructure. Operating with excellence.</p>
           <div class="flex gap-4 mt-5">
             <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
             <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
           </div>
         </div>
-        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Enlaces rápidos" data-lang-en="Quick links">Enlaces rápidos</h5><ul class="space-y-3 text-sm"><li><a href="#oportunidades" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Operaciones" data-lang-en="Operations">Operaciones</span></a></li><li><a href="#beneficios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Beneficios" data-lang-en="Benefits">Beneficios</span></a></li><li><a href="#testimonios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Testimonios" data-lang-en="Testimonials">Testimonios</span></a></li><li><a href="#postular" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Postular" data-lang-en="Apply">Postular</span></a></li></ul></div>
-        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Contacto RRHH" data-lang-en="HR Contact">Contacto RRHH</h5><ul class="space-y-3 text-sm text-[#6B7280]"><li class="flex items-center gap-3"><i class="fas fa-phone-alt text-[#0099FF] w-5"></i> 617-270-0465</li><li class="flex items-center gap-3"><i class="fas fa-envelope text-[#0099FF] w-5"></i> careers@teamleaning.com</li><li class="flex items-center gap-3"><i class="fas fa-clock text-[#0099FF] w-5"></i> <span data-lang-es="Lun a Vie 8am - 8pm" data-lang-en="Mon - Fri 8am - 8pm">Lun a Vie 8am - 8pm</span></li></ul></div>
-        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="⚠️ Urgente: campaña nieve" data-lang-en="⚠️ Urgent: snow campaign">⚠️ Urgente: campaña nieve</h5><p class="text-sm text-[#6B7280] leading-relaxed" data-lang-es="Personal para remoción de nieve en estadios de montaña. Temporada 2026-2027. ¡Plazas limitadas!" data-lang-en="Staff for snow removal at mountain stadiums. Season 2026-2026. Limited spots!">Personal para remoción de nieve en estadios de montaña. Temporada 2026-2026. ¡Plazas limitadas!</p><div class="mt-3"><a href="tel:617-270-0465" class="inline-flex items-center gap-2 text-[#0066CC] font-semibold text-sm hover:text-[#0099FF] transition-colors"><i class="fas fa-phone-alt"></i> 617-270-0465</a></div></div>
+        <div>
+          <h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Enlaces rápidos" data-lang-en="Quick links">Enlaces rápidos</h5>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#oportunidades" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Operaciones" data-lang-en="Operations">Operaciones</span></a></li>
+            <li><a href="#beneficios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Beneficios" data-lang-en="Benefits">Beneficios</span></a></li>
+            <li><a href="#testimonios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Testimonios" data-lang-en="Testimonials">Testimonios</span></a></li>
+            <li><a href="#postular" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Postular" data-lang-en="Apply">Postular</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Contacto RRHH" data-lang-en="HR Contact">Contacto RRHH</h5>
+          <ul class="space-y-3 text-sm text-[#6B7280]">
+            <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-[#0099FF] w-5"></i> 617-270-0465</li>
+            <li class="flex items-center gap-3"><i class="fas fa-envelope text-[#0099FF] w-5"></i> careers@teamleaning.com</li>
+            <li class="flex items-center gap-3"><i class="fas fa-clock text-[#0099FF] w-5"></i> <span data-lang-es="Lun a Vie 8am - 8pm" data-lang-en="Mon - Fri 8am - 8pm">Lun a Vie 8am - 8pm</span></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="⚠️ Urgente: campaña nieve" data-lang-en="⚠️ Urgent: snow campaign">⚠️ Urgente: campaña nieve</h5>
+          <p class="text-sm text-[#6B7280] leading-relaxed" data-lang-es="Personal para remoción de nieve en estadios de montaña. Temporada 2026-2027. ¡Plazas limitadas!" data-lang-en="Staff for snow removal at mountain stadiums. Season 2026-2027. Limited spots!">Personal para remoción de nieve en estadios de montaña. Temporada 2026-2027. ¡Plazas limitadas!</p>
+          <div class="mt-3"><a href="tel:617-270-0465" class="inline-flex items-center gap-2 text-[#0066CC] font-semibold text-sm hover:text-[#0099FF] transition-colors"><i class="fas fa-phone-alt"></i> 617-270-0465</a></div>
+        </div>
       </div>
       <div class="text-center text-xs text-[#6B7280] pt-8 border-t border-[#B8E1FF] mt-8">© 2026 Team Leaning — <span data-lang-es="Limpieza profesional con excelencia" data-lang-en="Professional cleaning with excellence">Limpieza profesional con excelencia</span> 💧</div>
     </footer>
@@ -700,10 +720,11 @@
     const observerStats = new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.3 });
     observerStats.observe(document.querySelector('#beneficios'));
 
-    // Sistema de idiomas
+    // ========== SISTEMA DE TRADUCCIÓN COMPLETO - CORREGIDO ==========
     let currentLang = 'es';
     
     function updateLanguage(lang) {
+      // 1. Traducir todos los elementos con data-lang (incluye footer)
       document.querySelectorAll('[data-lang]').forEach(el => {
         if (el.getAttribute('data-lang') === lang) {
           el.classList.remove('hidden');
@@ -712,6 +733,7 @@
         }
       });
       
+      // 2. Traducir placeholders de inputs y textareas
       document.querySelectorAll('[data-lang-es-placeholder], [data-lang-en-placeholder]').forEach(el => {
         if (lang === 'es' && el.hasAttribute('data-lang-es-placeholder')) {
           el.placeholder = el.getAttribute('data-lang-es-placeholder');
@@ -720,6 +742,7 @@
         }
       });
       
+      // 3. Traducir opciones de selects
       document.querySelectorAll('select option').forEach(option => {
         if (lang === 'es' && option.hasAttribute('data-lang-es')) {
           option.text = option.getAttribute('data-lang-es');
@@ -728,6 +751,28 @@
         }
       });
       
+      // 4. Traducir textos de elementos con data-lang-es y data-lang-en (especialmente footer)
+      document.querySelectorAll('[data-lang-es], [data-lang-en]').forEach(el => {
+        // Si el elemento tiene data-lang, ya fue procesado arriba
+        if (!el.hasAttribute('data-lang')) {
+          if (lang === 'es' && el.hasAttribute('data-lang-es')) {
+            el.textContent = el.getAttribute('data-lang-es');
+          } else if (lang === 'en' && el.hasAttribute('data-lang-en')) {
+            el.textContent = el.getAttribute('data-lang-en');
+          }
+        }
+      });
+      
+      // 5. Traducir títulos de elementos (para tooltips)
+      document.querySelectorAll('[data-lang-es-title], [data-lang-en-title]').forEach(el => {
+        if (lang === 'es' && el.hasAttribute('data-lang-es-title')) {
+          el.setAttribute('title', el.getAttribute('data-lang-es-title'));
+        } else if (lang === 'en' && el.hasAttribute('data-lang-en-title')) {
+          el.setAttribute('title', el.getAttribute('data-lang-en-title'));
+        }
+      });
+      
+      // 6. Actualizar botones de idioma (activo/inactivo)
       document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang-btn') === lang) {
           btn.classList.add('active');
@@ -736,6 +781,7 @@
         }
       });
       
+      // 7. Traducir botón de envío del formulario
       const submitBtn = document.querySelector('#postular button[type="submit"]');
       if (submitBtn) {
         if (lang === 'es') {
@@ -748,6 +794,7 @@
       currentLang = lang;
     }
     
+    // Event listeners para los botones de idioma
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang-btn');
