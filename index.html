@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Team Leaning Pro | Reclutamiento - Limpieza de Estadios, Nieve y Operaciones Especiales</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Swiper JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --aqua-deep: #0066CC;
+      --aqua-bright: #0099FF;
+      --aqua-light: #4DB8FF;
+      --aqua-pastel: #B8E1FF;
+      --aqua-turquoise: #00B4D8;
+      --aqua-glow: #00D4FF;
+      --white-clean: #FFFFFF;
+      --gray-light: #F5F7FA;
+      --gray-mid: #6B7280;
+      --gray-dark: #1F2937;
+    }
+    
+    * {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #F0F9FF 0%, #E6F4FF 50%, #DCEFF8 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Burbujas flotantes */
+    .bubble {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatBubble linear infinite;
+      opacity: 0.4;
+      filter: blur(0.5px);
+    }
+    
+    @keyframes floatBubble {
+      0% { transform: translateY(100vh) scale(0.2) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.3; }
+      100% { transform: translateY(-20vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+    
+    /* Efecto 3D para imágenes */
+    .img-pop-out {
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: perspective(1200px) translateZ(0) rotateX(0deg) rotateY(0deg);
+      box-shadow: 0 25px 40px -15px rgba(0, 102, 204, 0.3);
+      border-radius: 32px;
+    }
+    
+    .img-pop-out:hover {
+      transform: perspective(1200px) translateZ(40px) rotateX(2deg) rotateY(1deg);
+      box-shadow: 0 35px 55px -18px rgba(0, 102, 204, 0.5);
+    }
+    
+    /* Tarjetas */
+    .card-aqua {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 2rem;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 12px 28px -10px rgba(0, 102, 204, 0.12);
+      border: 1px solid rgba(0, 153, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-aqua::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.08), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .card-aqua:hover::before { left: 100%; }
+    .card-aqua:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 28px 40px -14px rgba(0, 102, 204, 0.25); border-color: rgba(0, 153, 255, 0.4); }
+    
+    /* Botones */
+    .btn-primary-aqua {
+      background: linear-gradient(105deg, #0066CC, #0099FF, #00B4D8);
+      background-size: 200% auto;
+      box-shadow: 0 8px 20px rgba(0, 102, 204, 0.35);
+      transition: all 0.3s ease;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .btn-primary-aqua:hover { transform: translateY(-3px) scale(1.02); background-position: right center; box-shadow: 0 15px 30px rgba(0, 102, 204, 0.45); }
+    
+    .btn-outline-aqua {
+      background: transparent;
+      border: 2px solid #0099FF;
+      color: #0066CC;
+      transition: all 0.3s ease;
+      font-weight: 700;
+    }
+    
+    .btn-outline-aqua:hover { background: #0099FF; color: white; transform: scale(1.02); box-shadow: 0 5px 15px rgba(0, 153, 255, 0.3); }
+    
+    /* Language Switcher */
+    .lang-switch {
+      background: rgba(0, 102, 204, 0.1);
+      border-radius: 2rem;
+      padding: 0.25rem;
+      display: flex;
+      gap: 0.25rem;
+    }
+    
+    .lang-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 1.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: transparent;
+      color: #0066CC;
+    }
+    
+    .lang-btn.active {
+      background: linear-gradient(135deg, #0066CC, #0099FF);
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+    }
+    
+    .lang-btn:hover:not(.active) { background: rgba(0, 102, 204, 0.2); }
+    
+    /* Navbar */
+    .navbar-aqua {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 153, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    /* Logo container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(0,102,204,0.08), rgba(0,153,255,0.05));
+      padding: 8px 18px;
+      border-radius: 60px;
+      border: 1px solid rgba(0,153,255,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .logo-container:hover {
+      border-color: rgba(0,153,255,0.5);
+      box-shadow: 0 4px 15px rgba(0,102,204,0.15);
+      transform: translateY(-2px);
+    }
+    
+    .logo-icon {
+      width: 112px;
+      height: 95px;
+      background-image: url(logo-blanco.png);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,102,204,0.3);
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    
+    }
+
+   
+    
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .logo-text .team {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0066CC, #0099FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+    
+    .logo-text .leaning {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #00B4D8;
+      letter-spacing: -0.3px;
+    }
+    
+    .logo-phone {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0066CC;
+      background: rgba(0,102,204,0.1);
+      padding: 4px 10px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Formulario */
+    .form-input-aqua {
+      background: #ffffff;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 1.5rem;
+      padding: 0.9rem 1.5rem;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .form-input-aqua:focus { outline: none; border-color: #0099FF; box-shadow: 0 0 0 4px rgba(0, 153, 255, 0.15); transform: translateY(-2px); }
+    
+    .testimonial-aqua {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 15px 30px -12px rgba(0, 102, 204, 0.1);
+      border-left: 5px solid #0099FF;
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-aqua:hover { transform: translateY(-5px); box-shadow: 0 20px 35px -12px rgba(0, 102, 204, 0.2); }
+    
+    .stat-number-aqua {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0066CC, #00B4D8, #0099FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+    
+    .floating-hero { animation: floatSoft 5s ease-in-out infinite; }
+    @keyframes floatSoft { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+    
+    .accent-line {
+      background: linear-gradient(90deg, #0099FF, #00B4D8, #4DB8FF, #00B4D8, #0099FF);
+      background-size: 200% auto;
+      height: 4px;
+      width: 100px;
+      border-radius: 4px;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    @keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #E6F4FF; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0099FF, #0066CC); border-radius: 10px; }
+    
+    [data-lang] { transition: opacity 0.2s ease; }
+    .lang-hidden { display: none; }
+    
+    .bounce-icon { animation: bounceSoft 2s ease-in-out infinite; }
+    @keyframes bounceSoft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  </style>
+</head>
+<body>
+
+  <div id="bubblesContainer"></div>
+
+  <!-- Navegación con Logo integrado -->
+  <nav class="navbar-aqua fixed top-0 w-full z-50 py-3 px-6 md:px-12 transition-all duration-300" id="navbar">
+    <div class="flex justify-between items-center flex-wrap gap-3">
+      <!-- LOGO DE LA COMPAÑÍA -->
+      <div class="logo-container cursor-pointer group">
+        <div class="logo-icon">
+          <!-- <i class="fas fa-broom text-white text-xl"></i> -->
+         
+        </div>
+        <div class="logo-text">
+          <span class="team">TEAM</span>
+          <span class="leaning">LEANING</span>
+          <div class="logo-phone mt-1">
+            <i class="fas fa-phone-alt text-xs"></i>
+            <span>617-270-0465</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex gap-4 items-center">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang-btn="es">🇪🇸 ES</button>
+          <button class="lang-btn" data-lang-btn="en">🇬🇧 EN</button>
+        </div>
+        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105" data-lang="es">📢 Reclutamiento Activo</a>
+        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 hidden" data-lang="en">📢 Active Recruitment</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28">
+    <!-- Hero Section -->
+    <section class="relative px-6 md:px-16 lg:px-24 py-12 md:py-20 overflow-hidden">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div class="space-y-6 z-10">
+          <div class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full border-l-4 border-[#0099FF] shadow-md">
+            <i class="fas fa-hard-hat text-[#0066CC] text-sm animate-pulse"></i>
+            <span class="text-[#374151] font-semibold text-sm tracking-wide" data-lang="es">🔥 EQUIPOS ÉLITE • CONTRATACIÓN 2025</span>
+            <span class="text-[#374151] font-semibold text-sm tracking-wide hidden" data-lang="en">🔥 ELITE TEAMS • HIRING 2025</span>
+          </div>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+            <span class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] bg-clip-text text-transparent" data-lang="es">Limpieza</span>
+            <span class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] bg-clip-text text-transparent hidden" data-lang="en">Professional</span><br>
+            <span class="bg-gradient-to-r from-[#0099FF] to-[#00B4D8] bg-clip-text text-transparent" data-lang="es">de estadios,</span>
+            <span class="bg-gradient-to-r from-[#0099FF] to-[#00B4D8] bg-clip-text text-transparent hidden" data-lang="en">Stadium,</span><br>
+            <span class="text-[#1F2937]" data-lang="es">nieve y más</span>
+            <span class="text-[#1F2937] hidden" data-lang="en">Snow & More</span>
+          </h1>
+          <p class="text-[#6B7280] text-lg max-w-lg leading-relaxed" data-lang="es">Operaciones de alto rendimiento. Buscamos personal para limpieza profesional en eventos masivos, remoción de nieve y mantenimiento industrial. Únete al mejor equipo.</p>
+          <p class="text-[#6B7280] text-lg max-w-lg leading-relaxed hidden" data-lang="en">High-performance operations. We're hiring staff for professional cleaning at massive events, snow removal, and industrial maintenance. Join the best team.</p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#postular" class="btn-primary-aqua px-8 py-3.5 rounded-full text-center shadow-xl transition-all inline-block font-bold text-base" data-lang="es">✨ Postular ahora ✨</a>
+            <a href="#postular" class="btn-primary-aqua px-8 py-3.5 rounded-full text-center shadow-xl transition-all inline-block font-bold text-base hidden" data-lang="en">✨ Apply Now ✨</a>
+            <a href="#oportunidades" class="btn-outline-aqua px-8 py-3.5 rounded-full text-center transition-all inline-block font-bold" data-lang="es">Ver vacantes <i class="fas fa-arrow-right ml-2"></i></a>
+            <a href="#oportunidades" class="btn-outline-aqua px-8 py-3.5 rounded-full text-center transition-all inline-block font-bold hidden" data-lang="en">View Openings <i class="fas fa-arrow-right ml-2"></i></a>
+          </div>
+          <div class="flex items-center gap-6 pt-3 text-sm">
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0099FF] text-base bounce-icon"></i> <span class="text-[#374151] font-medium" data-lang="es">Contrato formal</span><span class="text-[#374151] font-medium hidden" data-lang="en">Formal Contract</span></div>
+            <div class="flex items-center gap-2"><i class="fas fa-clock text-[#0099FF] text-base bounce-icon"></i> <span class="text-[#374151] font-medium" data-lang="es">Turnos flexibles</span><span class="text-[#374151] font-medium hidden" data-lang="en">Flexible Shifts</span></div>
+            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-[#0099FF] text-base bounce-icon"></i> <span class="text-[#374151] font-medium" data-lang="es">Seguro mayor</span><span class="text-[#374151] font-medium hidden" data-lang="en">Full Insurance</span></div>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center">
+          <div class="relative w-full max-w-md lg:max-w-lg mx-auto">
+            <div class="img-pop-out overflow-hidden rounded-3xl shadow-2xl floating-hero">
+              <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&h=600&fit=crop" alt="Professional stadium cleaning" class="w-full h-auto object-cover">
+            </div>
+            <div class="absolute -top-5 -right-4 bg-white rounded-2xl px-5 py-2.5 flex items-center gap-2 shadow-xl border-l-4 border-[#0099FF]">
+              <i class="fas fa-snowflake text-[#00B4D8] text-xl animate-pulse"></i>
+              <span class="font-bold text-[#0066CC]" data-lang="es">🏆 Especialistas en Nieve</span>
+              <span class="font-bold text-[#0066CC] hidden" data-lang="en">🏆 Snow Specialists</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Oportunidades -->
+    <section id="oportunidades" class="px-6 md:px-16 lg:px-24 py-20 bg-white/40 rounded-t-3xl">
+      <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+        <span class="text-[#0099FF] font-bold tracking-wider text-sm uppercase" data-lang="es">TRABAJOS DE ALTO IMPACTO</span>
+        <span class="text-[#0099FF] font-bold tracking-wider text-sm uppercase hidden" data-lang="en">HIGH-IMPACT JOBS</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent" data-lang="es">Buscamos talento para <span class="text-[#0099FF]">operaciones clave</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent hidden" data-lang="en">We're hiring for <span class="text-[#0099FF]">key operations</span></h2>
+        <div class="accent-line mx-auto mt-4"></div>
+        <p class="text-[#6B7280] mt-5 text-lg" data-lang="es">Capacitación especializada, equipos de última generación y desarrollo profesional.</p>
+        <p class="text-[#6B7280] mt-5 text-lg hidden" data-lang="en">Specialized training, state-of-the-art equipment, and professional development.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div class="card-aqua p-6 text-center group" data-aos="fade-up" data-aos-delay="100">
+          <div class="rounded-2xl overflow-hidden mb-5 h-44 relative">
+            <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c95?w=400&h=200&fit=crop" alt="Stadium cleaning" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="w-16 h-16 -mt-10 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center relative z-10 border-2 border-[#B8E1FF]">
+            <i class="fas fa-futbol text-3xl text-[#0066CC]"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4" data-lang="es">🧹 Limpieza de Estadios</h3>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4 hidden" data-lang="en">🧹 Stadium Cleaning</h3>
+          <p class="text-[#6B7280] my-3 leading-relaxed" data-lang="es">Post-partido, conciertos masivos, mantenimiento profundo. Manejo de maquinaria industrial.</p>
+          <p class="text-[#6B7280] my-3 leading-relaxed hidden" data-lang="en">Post-game, massive concerts, deep maintenance. Industrial machinery operation.</p>
+          <div class="inline-flex items-center gap-2 text-sm text-[#0099FF] font-semibold"><i class="fas fa-map-marker-alt"></i> CDMX, GDL, MTY, QRO</div>
+        </div>
+
+        <div class="card-aqua p-6 text-center group" data-aos="fade-up" data-aos-delay="200">
+          <div class="rounded-2xl overflow-hidden mb-5 h-44 relative">
+            <img src="https://images.unsplash.com/photo-1467724712553-4c9f9af6f7f5?w=400&h=200&fit=crop" alt="Snow removal" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="w-16 h-16 -mt-10 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center relative z-10 border-2 border-[#B8E1FF]">
+            <i class="fas fa-snowplow text-3xl text-[#00B4D8]"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4" data-lang="es">❄️ Limpieza de Nieve</h3>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4 hidden" data-lang="en">❄️ Snow Removal</h3>
+          <p class="text-[#6B7280] my-3 leading-relaxed" data-lang="es">Remoción de nieve en estadios, carreteras y accesos. Campañas invernales especializadas.</p>
+          <p class="text-[#6B7280] my-3 leading-relaxed hidden" data-lang="en">Snow removal at stadiums, roads, and access points. Specialized winter campaigns.</p>
+          <div class="inline-flex items-center gap-2 text-sm text-[#0099FF] font-semibold"><i class="fas fa-mountain"></i> <span data-lang="es">Zona centro + bonos</span><span class="hidden" data-lang="en">Central zone + bonuses</span></div>
+        </div>
+
+        <div class="card-aqua p-6 text-center group" data-aos="fade-up" data-aos-delay="300">
+          <div class="rounded-2xl overflow-hidden mb-5 h-44 relative">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=200&fit=crop" alt="Industrial cleaning" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="w-16 h-16 -mt-10 mx-auto bg-white rounded-2xl shadow-lg flex items-center justify-center relative z-10 border-2 border-[#B8E1FF]">
+            <i class="fas fa-building text-3xl text-[#4DB8FF]"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4" data-lang="es">🏭 Limpieza Industrial</h3>
+          <h3 class="text-2xl font-bold text-[#0066CC] mt-4 hidden" data-lang="en">🏭 Industrial Cleaning</h3>
+          <p class="text-[#6B7280] my-3 leading-relaxed" data-lang="es">Aeropuertos, fábricas, centros logísticos. Certificación en alturas disponible.</p>
+          <p class="text-[#6B7280] my-3 leading-relaxed hidden" data-lang="en">Airports, factories, logistics centers. Height certification available.</p>
+          <div class="inline-flex items-center gap-2 text-sm text-[#0099FF] font-semibold"><i class="fas fa-tools"></i> <span data-lang="es">Equipo técnico completo</span><span class="hidden" data-lang="en">Complete technical equipment</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section id="beneficios" class="px-6 md:px-16 lg:px-24 py-16 bg-gradient-to-r from-[#E6F4FF] via-[#F0F9FF] to-[#E6F4FF]">
+      <div class="grid md:grid-cols-3 gap-8 text-center max-w-6xl mx-auto">
+        <div class="card-aqua p-6" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fas fa-users text-4xl text-[#0066CC] mb-4"></i>
+          <div class="stat-number-aqua" data-target="500">0+</div>
+          <p class="text-[#374151] font-semibold text-lg mt-2" data-lang="es">Operadores activos</p>
+          <p class="text-[#374151] font-semibold text-lg mt-2 hidden" data-lang="en">Active Operators</p>
+        </div>
+        <div class="card-aqua p-6" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fas fa-calendar-check text-4xl text-[#0099FF] mb-4"></i>
+          <div class="stat-number-aqua" data-target="217">0+</div>
+          <p class="text-[#374151] font-semibold text-lg mt-2" data-lang="es">Eventos cubiertos 2025</p>
+          <p class="text-[#374151] font-semibold text-lg mt-2 hidden" data-lang="en">Events Covered 2025</p>
+        </div>
+        <div class="card-aqua p-6" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fas fa-chart-line text-4xl text-[#00B4D8] mb-4"></i>
+          <div class="stat-number-aqua" data-target="97" data-suffix="%">0%</div>
+          <p class="text-[#374151] font-semibold text-lg mt-2" data-lang="es">Tasa de recomendación</p>
+          <p class="text-[#374151] font-semibold text-lg mt-2 hidden" data-lang="en">Recommendation Rate</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="px-6 md:px-16 lg:px-24 py-16 bg-gradient-to-b from-white to-[#E6F4FF]">
+      <div class="text-center mb-10" data-aos="fade-up">
+        <span class="text-[#0099FF] font-bold uppercase tracking-wider text-sm" data-lang="es">testimonios reales</span>
+        <span class="text-[#0099FF] font-bold uppercase tracking-wider text-sm hidden" data-lang="en">real testimonials</span>
+        <h2 class="text-4xl font-bold mt-2 bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent" data-lang="es">Nuestros colaboradores <span class="text-[#0099FF]">opinan</span></h2>
+        <h2 class="text-4xl font-bold mt-2 bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent hidden" data-lang="en">What our <span class="text-[#0099FF]">team says</span></h2>
+      </div>
+      <div class="swiper mySwiper px-2 max-w-7xl mx-auto">
+        <div class="swiper-wrapper pb-12">
+          <div class="swiper-slide">
+            <div class="testimonial-aqua">
+              <div class="flex items-center gap-1 mb-3"><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i></div>
+              <i class="fas fa-quote-left text-[#0099FF] text-3xl mb-3 opacity-50"></i>
+              <p class="text-[#374151] leading-relaxed" data-lang="es">"Trabajar en limpieza de nieve fue increíble. Team Leaning nos da equipo de primera y capacitación constante."</p>
+              <p class="text-[#374151] leading-relaxed hidden" data-lang="en">"Working in snow cleaning was incredible. Team Leaning provides top equipment and constant training."</p>
+              <div class="flex items-center mt-5 gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066CC] to-[#0099FF] flex items-center justify-center"><i class="fas fa-user text-white text-lg"></i></div><div><strong class="text-[#0066CC] text-lg">Carlos Méndez</strong><p class="text-[#0099FF] text-sm font-semibold">⭐ Operador especializado</p></div></div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-aqua">
+              <div class="flex items-center gap-1 mb-3"><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i></div>
+              <i class="fas fa-quote-left text-[#0099FF] text-3xl mb-3 opacity-50"></i>
+              <p class="text-[#374151] leading-relaxed" data-lang="es">"Excelente empresa, pagan puntual y hay bonos por desempeño. ¡Orgullosa de pertenecer a Team Leaning!"</p>
+              <p class="text-[#374151] leading-relaxed hidden" data-lang="en">"Excellent company, punctual payment and performance bonuses. Proud to be part of Team Leaning!"</p>
+              <div class="flex items-center mt-5 gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#0099FF] to-[#00B4D8] flex items-center justify-center"><i class="fas fa-user-tie text-white text-lg"></i></div><div><strong class="text-[#0066CC] text-lg">Mariana Lozano</strong><p class="text-[#0099FF] text-sm font-semibold">⭐ Supervisora</p></div></div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testimonial-aqua">
+              <div class="flex items-center gap-1 mb-3"><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i></div>
+              <i class="fas fa-quote-left text-[#0099FF] text-3xl mb-3 opacity-50"></i>
+              <p class="text-[#374151] leading-relaxed" data-lang="es">"El programa de limpieza industrial me dio crecimiento real. Horarios flexibles y contrato directo."</p>
+              <p class="text-[#374151] leading-relaxed hidden" data-lang="en">"The industrial cleaning program gave me real growth. Flexible hours and direct contract."</p>
+              <div class="flex items-center mt-5 gap-3"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#00B4D8] to-[#4DB8FF] flex items-center justify-center"><i class="fas fa-broom text-white text-lg"></i></div><div><strong class="text-[#0066CC] text-lg">Javier Ríos</strong><p class="text-[#0099FF] text-sm font-semibold">⭐ Técnico</p></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Formulario de Postulación -->
+    <section id="postular" class="px-6 md:px-16 lg:px-24 py-20 relative">
+      <div class="max-w-4xl mx-auto card-aqua p-8 md:p-12 shadow-2xl border-t-4 border-t-[#0099FF]" data-aos="zoom-in-up">
+        <div class="text-center mb-8">
+          <div class="w-24 h-24 bg-gradient-to-br from-[#0066CC]/10 to-[#0099FF]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-file-signature text-[#0066CC] text-4xl"></i>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent" data-lang="es">¡Forma parte del equipo!</h2>
+          <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent hidden" data-lang="en">Join the team!</h2>
+          <p class="text-[#6B7280] mt-2 text-lg" data-lang="es">Completa el formulario y te contactaremos en <strong class="text-[#0066CC]">menos de 24 horas</strong>.</p>
+          <p class="text-[#6B7280] mt-2 text-lg hidden" data-lang="en">Fill out the form and we'll contact you in <strong class="text-[#0066CC]">less than 24 hours</strong>.</p>
+        </div>
+        <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
+          <input type="text" placeholder="Nombre completo *" class="form-input-aqua" data-lang-es-placeholder="Nombre completo *" data-lang-en-placeholder="Full name *" required>
+          <input type="email" placeholder="Correo electrónico *" class="form-input-aqua" data-lang-es-placeholder="Correo electrónico *" data-lang-en-placeholder="Email address *" required>
+          <input type="tel" placeholder="Teléfono / WhatsApp" class="form-input-aqua" data-lang-es-placeholder="Teléfono / WhatsApp" data-lang-en-placeholder="Phone / WhatsApp">
+          <select class="form-input-aqua" required>
+            <option value="" disabled selected data-lang-es="– Selecciona tu especialidad –" data-lang-en="– Select your specialty –">– Selecciona tu especialidad –</option>
+            <option data-lang-es="Limpieza de estadios (eventos masivos)" data-lang-en="Stadium cleaning (massive events)">Limpieza de estadios (eventos masivos)</option>
+            <option data-lang-es="Limpieza de nieve (temporada invernal)" data-lang-en="Snow removal (winter season)">Limpieza de nieve (temporada invernal)</option>
+            <option data-lang-es="Limpieza industrial / aeropuertos" data-lang-en="Industrial cleaning / airports">Limpieza industrial / aeropuertos</option>
+            <option data-lang-es="Operaciones especiales (todas)" data-lang-en="Special operations (all)">Operaciones especiales (todas)</option>
+          </select>
+          <div class="md:col-span-2">
+            <textarea rows="3" class="form-input-aqua" data-lang-es-placeholder="Cuéntanos tu experiencia o disponibilidad horaria..." data-lang-en-placeholder="Tell us about your experience or availability..."></textarea>
+          </div>
+          <div class="md:col-span-2 flex justify-center">
+            <button type="submit" class="btn-primary-aqua py-4 px-12 rounded-full text-xl w-full md:w-auto font-bold shadow-xl transition-all flex items-center gap-2 justify-center" data-lang-es="📢 Enviar postulación" data-lang-en="📢 Submit Application">📢 Enviar postulación <i class="fas fa-paper-plane"></i></button>
+          </div>
+          <p class="text-xs text-center text-[#6B7280] col-span-2 mt-2 flex items-center justify-center gap-1"><i class="fas fa-lock text-[#0099FF]"></i> <span data-lang-es="Tus datos están protegidos. Reclutamiento activo en toda la república." data-lang-en="Your data is protected. Active recruitment nationwide.">Tus datos están protegidos. Reclutamiento activo en toda la república.</span></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer con el logo y teléfono -->
+    <footer class="border-t border-[#B8E1FF] py-12 px-6 md:px-24 bg-gradient-to-b from-white to-[#F0F9FF]">
+      <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0066CC] to-[#0099FF] flex items-center justify-center shadow-md">
+              <i class="fas fa-broom text-white text-xl"></i>
+            </div>
+            <div>
+              <div class="text-xl font-bold bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent">TEAM<span class="text-[#0099FF]">LEANING</span></div>
+              <div class="text-sm text-[#0066CC] font-semibold"><i class="fas fa-phone-alt mr-1"></i> 617-270-0465</div>
+            </div>
+          </div>
+          <p class="text-sm text-[#6B7280] leading-relaxed" data-lang-es="Líderes en limpieza profesional para estadios, nieve e infraestructura crítica. Operando con excelencia." data-lang-en="Leaders in professional cleaning for stadiums, snow, and critical infrastructure. Operating with excellence.">Líderes en limpieza profesional para estadios, nieve e infraestructura crítica. Operando con excelencia.</p>
+          <div class="flex gap-4 mt-5">
+            <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="w-10 h-10 bg-[#E6F4FF] rounded-full flex items-center justify-center text-[#0066CC] hover:bg-[#0066CC] hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Enlaces rápidos" data-lang-en="Quick links">Enlaces rápidos</h5><ul class="space-y-3 text-sm"><li><a href="#oportunidades" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Operaciones" data-lang-en="Operations">Operaciones</span></a></li><li><a href="#beneficios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Beneficios" data-lang-en="Benefits">Beneficios</span></a></li><li><a href="#testimonios" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Testimonios" data-lang-en="Testimonials">Testimonios</span></a></li><li><a href="#postular" class="text-[#6B7280] hover:text-[#0099FF] transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[#0099FF] text-xs"></i> <span data-lang-es="Postular" data-lang-en="Apply">Postular</span></a></li></ul></div>
+        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="Contacto RRHH" data-lang-en="HR Contact">Contacto RRHH</h5><ul class="space-y-3 text-sm text-[#6B7280]"><li class="flex items-center gap-3"><i class="fas fa-phone-alt text-[#0099FF] w-5"></i> 617-270-0465</li><li class="flex items-center gap-3"><i class="fas fa-envelope text-[#0099FF] w-5"></i> careers@teamleaning.com</li><li class="flex items-center gap-3"><i class="fas fa-clock text-[#0099FF] w-5"></i> <span data-lang-es="Lun a Vie 8am - 8pm" data-lang-en="Mon - Fri 8am - 8pm">Lun a Vie 8am - 8pm</span></li></ul></div>
+        <div><h5 class="font-bold text-[#0066CC] mb-4 text-lg" data-lang-es="⚠️ Urgente: campaña nieve" data-lang-en="⚠️ Urgent: snow campaign">⚠️ Urgente: campaña nieve</h5><p class="text-sm text-[#6B7280] leading-relaxed" data-lang-es="Personal para remoción de nieve en estadios de montaña. Temporada 2025-2026. ¡Plazas limitadas!" data-lang-en="Staff for snow removal at mountain stadiums. Season 2025-2026. Limited spots!">Personal para remoción de nieve en estadios de montaña. Temporada 2025-2026. ¡Plazas limitadas!</p><div class="mt-3"><a href="tel:617-270-0465" class="inline-flex items-center gap-2 text-[#0066CC] font-semibold text-sm hover:text-[#0099FF] transition-colors"><i class="fas fa-phone-alt"></i> 617-270-0465</a></div></div>
+      </div>
+      <div class="text-center text-xs text-[#6B7280] pt-8 border-t border-[#B8E1FF] mt-8">© 2025 Team Leaning — <span data-lang-es="Limpieza profesional con excelencia" data-lang-en="Professional cleaning with excellence">Limpieza profesional con excelencia</span> 💧</div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+    
+    // Burbujas
+    function createAquaBubbles() {
+      const container = document.getElementById('bubblesContainer');
+      const colors = ['#0066CC', '#0099FF', '#00B4D8', '#4DB8FF', '#B8E1FF'];
+      for (let i = 0; i < 45; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        const size = Math.random() * 120 + 30;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = Math.random() * 14 + 8 + 's';
+        bubble.style.animationDelay = Math.random() * 15 + 's';
+        bubble.style.background = `radial-gradient(circle at 30% 30%, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+        bubble.style.opacity = 0.15 + Math.random() * 0.3;
+        container.appendChild(bubble);
+      }
+    }
+    createAquaBubbles();
+
+    // Swiper
+    new Swiper('.mySwiper', {
+      slidesPerView: 1, spaceBetween: 25, loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+      autoplay: { delay: 4500, disableOnInteraction: false }
+    });
+
+    // Contadores
+    const counters = document.querySelectorAll('.stat-number-aqua');
+    let counted = false;
+    const startCounters = () => {
+      if(counted) return;
+      counted = true;
+      counters.forEach(el => {
+        const target = parseInt(el.dataset.target);
+        if(isNaN(target)) return;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const duration = 2000, stepTime = 20, steps = duration / stepTime, increment = target / steps;
+        let currentStep = 0;
+        const update = setInterval(() => {
+          currentStep++;
+          current += increment;
+          if(currentStep >= steps) { el.innerText = target + suffix; clearInterval(update); }
+          else { el.innerText = Math.floor(current) + suffix; }
+        }, stepTime);
+      });
+    };
+    const observerStats = new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.3 });
+    observerStats.observe(document.querySelector('#beneficios'));
+
+    // Sistema de idiomas
+    let currentLang = 'es';
+    
+    function updateLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+      
+      document.querySelectorAll('[data-lang-es-placeholder], [data-lang-en-placeholder]').forEach(el => {
+        if (lang === 'es' && el.hasAttribute('data-lang-es-placeholder')) {
+          el.placeholder = el.getAttribute('data-lang-es-placeholder');
+        } else if (lang === 'en' && el.hasAttribute('data-lang-en-placeholder')) {
+          el.placeholder = el.getAttribute('data-lang-en-placeholder');
+        }
+      });
+      
+      document.querySelectorAll('select option').forEach(option => {
+        if (lang === 'es' && option.hasAttribute('data-lang-es')) {
+          option.text = option.getAttribute('data-lang-es');
+        } else if (lang === 'en' && option.hasAttribute('data-lang-en')) {
+          option.text = option.getAttribute('data-lang-en');
+        }
+      });
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang-btn') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      currentLang = lang;
+    }
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang-btn');
+        updateLanguage(lang);
+      });
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) navbar.classList.add('shadow-lg');
+      else navbar.classList.remove('shadow-lg');
+    });
+  </script>
+</body>
+</html>
