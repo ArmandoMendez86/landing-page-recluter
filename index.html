@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <!-- Swiper JS -->
@@ -25,10 +25,6 @@
       --aqua-light: #4DB8FF;
       --aqua-pastel: #B8E1FF;
       --aqua-turquoise: #00B4D8;
-      --aqua-glow: #00D4FF;
-      --white-clean: #FFFFFF;
-      --gray-light: #F5F7FA;
-      --gray-mid: #6B7280;
       --gray-dark: #1F2937;
     }
     
@@ -148,83 +144,181 @@
     
     .lang-btn:hover:not(.active) { background: rgba(0, 102, 204, 0.2); }
     
-    /* Navbar */
-    .navbar-aqua {
-      background: rgba(255, 255, 255, 0.95);
+    /* ========== HEADER REDISEÑADO CON LOGO GRANDE ========== */
+    .navbar-redesign {
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 153, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 153, 255, 0.15);
       transition: all 0.3s ease;
+      padding: 12px 0;
     }
     
-    /* Logo container */
-    .logo-container {
+    /* Contenedor principal del header */
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    /* LOGO GRANDE - El protagonista */
+    .logo-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, rgba(0,102,204,0.08), rgba(0,153,255,0.05));
-      padding: 8px 18px;
-      border-radius: 60px;
-      border: 1px solid rgba(0,153,255,0.2);
+      gap: 20px;
+      /* background: linear-gradient(135deg, rgba(0,102,204,0.06), rgba(0,153,255,0.03)); */
+      padding: 12px 28px 12px 20px;
+      border-radius: 80px;
+     /*  border: 1px solid rgba(0,153,255,0.2); */
       transition: all 0.3s ease;
     }
     
-    .logo-container:hover {
-      border-color: rgba(0,153,255,0.5);
-      box-shadow: 0 4px 15px rgba(0,102,204,0.15);
+    .logo-wrapper:hover {
+      background: linear-gradient(135deg, rgba(0,102,204,0.1), rgba(0,153,255,0.06));
+      border-color: rgba(0,153,255,0.4);
       transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,102,204,0.12);
     }
     
-    .logo-icon {
-      width: 112px;
-      height: 95px;
-      background-image: url(logo-blanco.webp);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,102,204,0.3);
-      background-position: center;
-      background-size: 100%;
-      background-repeat: no-repeat;
-    
+    /* La imagen del logo - GRANDE y con buena resolución */
+    .logo-image {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,102,204,0.2));
+      transition: all 0.3s ease;
     }
-
-   
     
-    .logo-text {
+    .logo-wrapper:hover .logo-image {
+      filter: drop-shadow(0 6px 12px rgba(0,102,204,0.3));
+      transform: scale(1.02);
+    }
+    
+    /* Contenedor del texto del logo (si quieres mantener el texto junto a la imagen) */
+    .logo-text-wrapper {
       display: flex;
       flex-direction: column;
     }
     
-    .logo-text .team {
-      font-size: 1.4rem;
+    .logo-text-wrapper .brand-name {
+      font-size: 1.8rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #0066CC, #0099FF);
+      background: linear-gradient(135deg, #0a2a5e, #0066CC, #0099FF);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      line-height: 1.2;
+      line-height: 1.1;
     }
     
-    .logo-text .leaning {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #00B4D8;
-      letter-spacing: -0.3px;
+    .logo-text-wrapper .brand-tag {
+      font-size: 0.8rem;
+      color: #4DB8FF;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
     
-    .logo-phone {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #0066CC;
-      background: rgba(0,102,204,0.1);
-      padding: 4px 10px;
-      border-radius: 30px;
-      display: inline-flex;
+    /* Grupo de acciones a la derecha */
+    .header-actions {
+      display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 16px;
     }
+    
+    /* Teléfono destacado */
+    .phone-badge {
+      background: rgba(0,102,204,0.08);
+      padding: 8px 18px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    
+    .phone-badge:hover {
+      background: rgba(0,102,204,0.15);
+    }
+    
+    .phone-badge i {
+      font-size: 1.1rem;
+      color: #0099FF;
+    }
+    
+    .phone-badge span {
+      font-weight: 700;
+      color: #0066CC;
+      font-size: 1rem;
+    }
+    
+    /* Responsive del header */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 12px 20px;
+      }
+      
+      .logo-wrapper {
+        padding: 10px 20px;
+        gap: 12px;
+      }
+      
+      .logo-image {
+        width: 65px;
+        height: 65px;
+      }
+      
+      .logo-text-wrapper .brand-name {
+        font-size: 1.3rem;
+      }
+      
+      .logo-text-wrapper .brand-tag {
+        font-size: 0.65rem;
+      }
+      
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+      }
+      
+      .phone-badge {
+        padding: 6px 14px;
+      }
+      
+      .phone-badge span {
+        font-size: 0.85rem;
+      }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .logo-image {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .logo-text-wrapper .brand-name {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Para pantallas muy grandes, el logo puede ser aún más grande */
+    @media (min-width: 1600px) {
+      .logo-image {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .logo-text-wrapper .brand-name {
+        font-size: 2.2rem;
+      }
+    }
+    /* ========== FIN HEADER REDISEÑADO ========== */
     
     /* Formulario */
     .form-input-aqua {
@@ -290,37 +384,35 @@
 
   <div id="bubblesContainer"></div>
 
-  <!-- Navegación con Logo integrado -->
-  <nav class="navbar-aqua fixed top-0 w-full z-50 py-3 px-6 md:px-12 transition-all duration-300" id="navbar">
-    <div class="flex justify-between items-center flex-wrap gap-3">
-      <!-- LOGO DE LA COMPAÑÍA -->
-      <div class="logo-container cursor-pointer group">
-        <div class="logo-icon">
-          <!-- <i class="fas fa-broom text-white text-xl"></i> -->
-         
-        </div>
-        <div class="logo-text">
-          <span class="team">TEAM</span>
-          <span class="leaning">LEARNING</span>
-          <div class="logo-phone mt-1">
-            <i class="fas fa-phone-alt text-xs"></i>
-            <span>617-270-0465</span>
-          </div>
+  <!-- HEADER REDISEÑADO CON LOGO GRANDE -->
+  <nav class="navbar-redesign fixed top-0 w-full z-50" id="navbar">
+    <div class="header-container">
+      <!-- LOGO GRANDE - IMAGEN DESTACADA -->
+      <div class="logo-wrapper">
+        <img src="logo-blanco.webp" alt="Team Leaning Logo" class="logo-image">
+        <div class="logo-text-wrapper">
+          <span class="brand-name">TEAM LEARNING</span>
+          <span class="brand-tag">CLEANING SERVICES</span>
         </div>
       </div>
       
-      <div class="flex gap-4 items-center">
+      <!-- ACCIONES DEL HEADER -->
+      <div class="header-actions">
+        <div class="phone-badge">
+          <i class="fas fa-phone-alt"></i>
+          <span>617-270-0465</span>
+        </div>
         <div class="lang-switch">
           <button class="lang-btn active" data-lang-btn="es">🇪🇸 ES</button>
           <button class="lang-btn" data-lang-btn="en">🇬🇧 EN</button>
         </div>
-        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105" data-lang="es">📢 Reclutamiento Activo</a>
-        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 hidden" data-lang="en">📢 Active Recruitment</a>
+        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105" data-lang="es">📢 Reclutamiento</a>
+        <a href="#postular" class="bg-gradient-to-r from-[#0066CC] to-[#0099FF] hover:from-[#0099FF] hover:to-[#00B4D8] text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-105 hidden" data-lang="en">📢 Recruitment</a>
       </div>
     </div>
   </nav>
 
-  <main class="pt-28">
+  <main class="pt-32">
     <!-- Hero Section -->
     <section class="relative px-6 md:px-16 lg:px-24 py-12 md:py-20 overflow-hidden">
       <div class="grid md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
@@ -525,14 +617,12 @@
       </div>
     </section>
 
-    <!-- Footer con el logo y teléfono -->
+    <!-- Footer -->
     <footer class="border-t border-[#B8E1FF] py-12 px-6 md:px-24 bg-gradient-to-b from-white to-[#F0F9FF]">
       <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         <div>
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0066CC] to-[#0099FF] flex items-center justify-center shadow-md">
-              <i class="fas fa-broom text-white text-xl"></i>
-            </div>
+            <img src="logo-blanco.webp" alt="Team Leaning Logo" class="w-12 h-12 object-contain">
             <div>
               <div class="text-xl font-bold bg-gradient-to-r from-[#0066CC] to-[#00B4D8] bg-clip-text text-transparent">TEAM<span class="text-[#0099FF]">LEANING</span></div>
               <div class="text-sm text-[#0066CC] font-semibold"><i class="fas fa-phone-alt mr-1"></i> 617-270-0465</div>
@@ -645,6 +735,15 @@
           btn.classList.remove('active');
         }
       });
+      
+      const submitBtn = document.querySelector('#postular button[type="submit"]');
+      if (submitBtn) {
+        if (lang === 'es') {
+          submitBtn.innerHTML = '📢 Enviar postulación <i class="fas fa-paper-plane"></i>';
+        } else {
+          submitBtn.innerHTML = '📢 Submit Application <i class="fas fa-paper-plane"></i>';
+        }
+      }
       
       currentLang = lang;
     }
